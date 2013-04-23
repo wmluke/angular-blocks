@@ -1,6 +1,6 @@
 # angular-blocks
 
-Block style template inheritance for [AngularJS](http://angularjs.org) inspired by [Jade](http://jade-lang.com).
+Block style template inheritance for [AngularJS](http://angularjs.org) inspired by [Jade](http://jade-lang.com) and [Handlebars](http://handlebarsjs.com).
 
 ## Usage
 
