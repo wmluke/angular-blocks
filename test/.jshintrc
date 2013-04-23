@@ -36,6 +36,7 @@
         "module": true,
         "describe": true,
         "beforeEach": true,
+        "afterEach": true,
         "it": true,
         "inject": true,
         "expect": true
