@@ -70,7 +70,7 @@ Given the template below:
 </div>
 ```
 
-### Installation
+## Installation
 
 Load `angular-blocks.min.js` then add the `angular-blocks` module to your Angular app.
 
@@ -78,7 +78,6 @@ Load `angular-blocks.min.js` then add the `angular-blocks` module to your Angula
 ```javascript
 angular.module('app', ['angular-blocks']);
 ```
-
 
 
 ## Licsense
