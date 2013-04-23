@@ -30,6 +30,22 @@ Given the template below:
 </div>
 ```
 
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content">
+        <p>Foo</p>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
+</div>
+```
+
 ### Block Prepend: `data-block-prepend`
 
 ```html
@@ -37,6 +53,25 @@ Given the template below:
    <div data-block-prepend="content">
        <p>Foo</p>
    </div>
+</div>
+```
+
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content">
+       <div data-block-prepend="content">
+           <p>Foo</p>
+       </div>
+       <p>:content</p>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
 </div>
 ```
 
@@ -50,6 +85,25 @@ Given the template below:
 </div>
 ```
 
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content">
+       <p>:content</p>
+       <div data-block-append="content">
+           <p>Foo</p>
+       </div>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
+</div>
+```
+
 ### Block Before: `data-block-before`
 
 ```html
@@ -60,6 +114,25 @@ Given the template below:
 </div>
 ```
 
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+   <div data-block-before="content">
+       <p>Foo</p>
+   </div>
+    <div data-block="content">
+       <p>:content</p>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
+</div>
+```
+
 ### Block After: `data-block-after`
 
 ```html
@@ -67,6 +140,25 @@ Given the template below:
    <div data-block-after="content">
        <p>Foo</p>
    </div>
+</div>
+```
+
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content">
+       <p>:content</p>
+    </div>
+   <div data-block-after="content">
+       <p>Foo</p>
+   </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
 </div>
 ```
 
