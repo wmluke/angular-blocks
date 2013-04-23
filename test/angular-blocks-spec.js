@@ -1,16 +1,14 @@
 describe('angular-blocks directives', function () {
     'use strict';
 
-    var layout = [
-        '<header data-block="header"><p>:header</p></header>',
-        '<div data-block="content"><p>:content</p></div>',
-        '<footer data-block="footer"><p>:footer</p></footer>'
-    ];
-
     var $httpBackend;
 
-
     beforeEach(function () {
+        var layout = [
+            '<header data-block="header"><p>:header</p></header>',
+            '<div data-block="content"><p>:content</p></div>',
+            '<footer data-block="footer"><p>:footer</p></footer>'
+        ];
         module('angular-blocks');
         inject(function ($injector) {
             $httpBackend = $injector.get('$httpBackend');
@@ -26,9 +24,8 @@ describe('angular-blocks directives', function () {
 
 
     describe('data-extend-template directive', function () {
-        it('should throw an exception if the template does not exist', inject(function ($rootScope, $compile) {
+        it('should throw an exception if the template fails to load', inject(function ($rootScope, $compile) {
             var html = [
-                //layout.join('\n'),
                 '<div data-extend-template="/foo.html">',
                 '</div>'
             ];
