@@ -1,8 +1,8 @@
 {
     "name": "angular-blocks",
-    "description": "The best project ever.",
+    "description": "Template inheritance for Angular JS",
     "version": "0.1.1",
-    "private": true,
+    "private": false,
     "homepage": "https://github.com/wmluke/angular-blocks",
     "author": {
         "name": "Luke Bunselmeyer",
@@ -13,7 +13,7 @@
         "url": "git://github.com/wmluke/angular-blocks.git"
     },
     "bugs": {
-        "url": "https://github.com/wmlukeangular-template-inheritance/issues"
+        "url": "https://github.com/wmluke/angular-blocks/issues"
     },
     "engines": {
         "node": ">= 0.8.0",
