@@ -1,0 +1,8 @@
+{
+  "name": "jasmine-jquery",
+  "version": "1.5.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/velesin/jasmine-jquery"
+  }
+}
