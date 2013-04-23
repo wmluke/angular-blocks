@@ -17,7 +17,7 @@ Given the template below:
     <footer data-block="footer">
         <p>:footer</p>
     </footer>
-</script>'
+</script>
 ```
 
 ### Block Replace: `data-block`
