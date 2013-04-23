@@ -1,6 +1,5 @@
-'use strict';
-
 describe('angular-blocks directives', function () {
+    'use strict';
 
     var layout = [
         '<script type="text/ng-template" id="/layout.html">',

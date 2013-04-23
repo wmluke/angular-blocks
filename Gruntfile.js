@@ -1,8 +1,8 @@
-'use strict';
-
 var exec = require('child_process').exec;
 
 module.exports = function (grunt) {
+    'use strict';
+
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
@@ -10,17 +10,23 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
-            options: {
-                jshintrc: '.jshintrc'
-            },
-            gruntfile: {
-                src: 'Gruntfile.js'
-            },
-            main: {
+            src: {
+                options: {
+                    jshintrc: 'src/.jshintrc'
+                },
                 src: ['src/**/*.js']
             },
             test: {
+                options: {
+                    jshintrc: 'test/.jshintrc'
+                },
                 src: ['test/**/*.js']
+            },
+            grunt: {
+                options: {
+                    jshintrc: '.jshintrc'
+                },
+                src: ['Gruntfile.js']
             }
         },
         karma: {
@@ -35,6 +41,13 @@ module.exports = function (grunt) {
             }
         },
         uglify: {
+            options: {
+                banner: ['/**! ',
+                         ' * @license <%= pkg.name %> v<%= pkg.version %>',
+                         ' * Copyright (c) 2013 <%= pkg.author.name %>. <%= pkg.homepage %>',
+                         ' * License: MIT',
+                         ' */\n'].join('\n')
+            },
             main: {
                 files: {
                     'dist/<%= pkg.name %>.min.js': ['src/<%= pkg.name %>.js']
@@ -76,7 +89,7 @@ module.exports = function (grunt) {
     grunt.registerTask('test', ['karma:unit']);
     grunt.registerTask('test-start', ['karma:debug:start']);
     grunt.registerTask('test-run', ['karma:debug:run']);
-    grunt.registerTask('build', ['test', 'uglify']);
+    grunt.registerTask('build', ['jshint', 'test', 'uglify']);
     grunt.registerTask('default', ['build']);
 
 };

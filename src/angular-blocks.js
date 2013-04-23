@@ -53,5 +53,5 @@
     }
 
     angular.module('angular-blocks', [])
-        .directive('extendTemplate', ['$templateCache', '$compile', extendTemplate])
+        .directive('extendTemplate', ['$templateCache', '$compile', extendTemplate]);
 }());
