@@ -12,6 +12,22 @@ describe('angular-blocks directives', function () {
 
     beforeEach(module('angular-blocks'));
 
+
+    describe('data-extend-template directive', function () {
+        it('should throw an exception if the template does not exist', inject(function ($rootScope, $compile) {
+            var html = [
+                layout.join('\n'),
+                '<div data-extend-template="/foo.html">',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            expect(function () {
+                $compile(element)($rootScope);
+            }).toThrow('Template does not exit: /foo.html');
+        }));
+    });
+
     describe('data-block directive', function () {
         it('should extend the content block', inject(function ($rootScope, $compile) {
             var html = [

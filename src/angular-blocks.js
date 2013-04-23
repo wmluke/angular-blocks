@@ -7,6 +7,11 @@
             compile: function (tElement, tAttrs) {
                 // Get the extended template
                 var template = $templateCache.get(tAttrs.extendTemplate);
+
+                if (!template) {
+                    throw 'Template does not exit: ' + tAttrs.extendTemplate;
+                }
+
                 var $template = $(document.createElement('div')).html(template);
 
                 // Replace overridden blocks
