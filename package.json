@@ -1,8 +1,8 @@
 {
     "name": "angular-blocks",
-    "description": "The best project ever.",
-    "version": "0.1.0",
-    "private": true,
+    "description": "Template inheritance for Angular JS",
+    "version": "0.1.1",
+    "private": false,
     "homepage": "https://github.com/wmluke/angular-blocks",
     "author": {
         "name": "Luke Bunselmeyer",
@@ -13,7 +13,7 @@
         "url": "git://github.com/wmluke/angular-blocks.git"
     },
     "bugs": {
-        "url": "https://github.com/wmlukeangular-template-inheritance/issues"
+        "url": "https://github.com/wmluke/angular-blocks/issues"
     },
     "engines": {
         "node": ">= 0.8.0",
@@ -35,6 +35,7 @@
         "grunt-contrib-uglify": "~0.2.0",
         "grunt-bumpup": "~0.2.0",
         "grunt-regarde": "~0.1.1",
-        "grunt-karma": "~0.4.4"
+        "grunt-karma": "~0.4.4",
+        "grunt-exec": "~0.4.0"
     }
 }

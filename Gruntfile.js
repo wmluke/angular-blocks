@@ -1,5 +1,7 @@
 'use strict';
 
+var exec = require('child_process').exec;
+
 module.exports = function (grunt) {
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
