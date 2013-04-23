@@ -83,6 +83,6 @@ angular.module('app', ['angular-blocks']);
 
 ## Licsense
 
-Copyright (c) 2013 William L. Bunselmeyer. http://www.bunselmeyer.net
+Copyright (c) 2013 William L. Bunselmeyer. https://github.com/wmluke/angular-blocks
 
 Licensed under the MIT License

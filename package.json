@@ -5,7 +5,7 @@
     "private": false,
     "homepage": "https://github.com/wmluke/angular-blocks",
     "author": {
-        "name": "Luke Bunselmeyer",
+        "name": "William L. Bunselmeyer",
         "email": "wmlukeb@gmail.com"
     },
     "repository": {
@@ -36,6 +36,7 @@
         "grunt-bumpup": "~0.2.0",
         "grunt-regarde": "~0.1.1",
         "grunt-karma": "~0.4.4",
-        "grunt-exec": "~0.4.0"
+        "grunt-exec": "~0.4.0",
+        "jshint": "~1.1.0"
     }
 }
