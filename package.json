@@ -1,7 +1,7 @@
 {
     "name": "angular-blocks",
     "description": "Template inheritance for Angular JS",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "private": false,
     "homepage": "https://github.com/wmluke/angular-blocks",
     "author": {
