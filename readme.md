@@ -1,6 +1,6 @@
 # angular-blocks
 
-Block style template inheritance for [AngularJS](http://angularjs.org) inspired by [Jade](http://jade-lang.com).
+Block style template inheritance for [AngularJS](http://angularjs.org) inspired by [Jade](http://jade-lang.com), [Handlebars](http://thejohnfreeman.com/blog/2012/03/23/template-inheritance-for-handlebars.html), and [Django](https://docs.djangoproject.com/en/dev/topics/templates/#template-inheritance).
 
 ## Usage
 
@@ -17,7 +17,7 @@ Given the template below:
     <footer data-block="footer">
         <p>:footer</p>
     </footer>
-</script>'
+</script>
 ```
 
 ### Block Replace: `data-block`
@@ -27,6 +27,22 @@ Given the template below:
    <div data-block="content">
        <p>Foo</p>
    </div>
+</div>
+```
+
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content">
+        <p>Foo</p>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
 </div>
 ```
 
@@ -40,6 +56,25 @@ Given the template below:
 </div>
 ```
 
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content">
+       <div data-block-prepend="content">
+           <p>Foo</p>
+       </div>
+       <p>:content</p>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
+</div>
+```
+
 ### Block Append: `data-block-append`
 
 ```html
@@ -47,6 +82,25 @@ Given the template below:
    <div data-block-append="content">
        <p>Foo</p>
    </div>
+</div>
+```
+
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content">
+       <p>:content</p>
+       <div data-block-append="content">
+           <p>Foo</p>
+       </div>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
 </div>
 ```
 
@@ -60,6 +114,25 @@ Given the template below:
 </div>
 ```
 
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+   <div data-block-before="content">
+       <p>Foo</p>
+   </div>
+    <div data-block="content">
+       <p>:content</p>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
+</div>
+```
+
 ### Block After: `data-block-after`
 
 ```html
@@ -70,7 +143,32 @@ Given the template below:
 </div>
 ```
 
-### Installation
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content">
+       <p>:content</p>
+    </div>
+   <div data-block-after="content">
+       <p>Foo</p>
+   </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
+</div>
+```
+
+## Installation
+
+Download [angular-blocks.min.js](https://github.com/wmluke/angular-blocks/blob/master/dist/angular-blocks.min.js) or install with bower.
+
+```bash
+$ bower install angular-blocks --save
+```
 
 Load `angular-blocks.min.js` then add the `angular-blocks` module to your Angular app.
 
@@ -78,7 +176,6 @@ Load `angular-blocks.min.js` then add the `angular-blocks` module to your Angula
 ```javascript
 angular.module('app', ['angular-blocks']);
 ```
-
 
 
 ## Licsense

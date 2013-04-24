@@ -1,5 +1,3 @@
-var exec = require('child_process').exec;
-
 module.exports = function (grunt) {
     'use strict';
 
@@ -74,16 +72,6 @@ module.exports = function (grunt) {
     grunt.registerTask('bump', function (type) {
         type = type ? type : 'patch';
         grunt.task.run('bumpup:' + type);
-
-        var pkg = grunt.file.readJSON('package.json');
-
-        exec('git commit -a -m "Started release ' + pkg.version + '"', function (error, stdout, stderr) {
-            if (error) {
-                console.log(stderr);
-            } else {
-                console.log(stdout);
-            }
-        });
     });
 
     grunt.registerTask('test', ['karma:unit']);
