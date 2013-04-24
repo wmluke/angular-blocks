@@ -164,6 +164,12 @@ Becomes:
 
 ## Installation
 
+Download [angular-blocks.min.js](https://github.com/wmluke/angular-blocks/blob/master/dist/angular-blocks.min.js) or install with bower.
+
+```bash
+$ bower install angular-blocks --save
+```
+
 Load `angular-blocks.min.js` then add the `angular-blocks` module to your Angular app.
 
 
