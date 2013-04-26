@@ -2,6 +2,23 @@
 
 Block style template inheritance for [AngularJS](http://angularjs.org) inspired by [Jade](http://jade-lang.com), [Handlebars](http://thejohnfreeman.com/blog/2012/03/23/template-inheritance-for-handlebars.html), and [Django](https://docs.djangoproject.com/en/dev/topics/templates/#template-inheritance).
 
+## Installation
+
+Requires jquery.
+
+Download [angular-blocks.min.js](https://github.com/wmluke/angular-blocks/blob/master/dist/angular-blocks.min.js) or install with bower.
+
+```bash
+$ bower install angular-blocks --save
+```
+
+Load `angular-blocks.min.js` then add the `angular-blocks` module to your Angular app.
+
+
+```javascript
+angular.module('app', ['angular-blocks']);
+```
+
 ## Usage
 
 Given the template below:
@@ -161,22 +178,6 @@ Becomes:
     </footer>
 </div>
 ```
-
-## Installation
-
-Download [angular-blocks.min.js](https://github.com/wmluke/angular-blocks/blob/master/dist/angular-blocks.min.js) or install with bower.
-
-```bash
-$ bower install angular-blocks --save
-```
-
-Load `angular-blocks.min.js` then add the `angular-blocks` module to your Angular app.
-
-
-```javascript
-angular.module('app', ['angular-blocks']);
-```
-
 
 ## Licsense
 
