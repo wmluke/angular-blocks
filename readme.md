@@ -1,5 +1,7 @@
 # angular-blocks
 
+[![Build Status](https://travis-ci.org/wmluke/angular-blocks.png)](https://travis-ci.org/wmluke/angular-blocks)
+
 Block style template inheritance for [AngularJS](http://angularjs.org) inspired by [Jade](http://jade-lang.com), [Handlebars](http://thejohnfreeman.com/blog/2012/03/23/template-inheritance-for-handlebars.html), and [Django](https://docs.djangoproject.com/en/dev/topics/templates/#template-inheritance).
 
 ## Installation
