@@ -20,7 +20,7 @@
         "npm": "1.1.x"
     },
     "scripts": {
-        "test": "grunt karma",
+        "test": "grunt test",
         "start": "node app"
     },
     "devDependencies": {
