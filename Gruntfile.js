@@ -34,6 +34,10 @@ module.exports = function (grunt) {
             unit: {
                 singleRun: true
             },
+            phantom: {
+                singleRun: true,
+                browsers: ['PhantomJS']
+            },
             debug: {
                 singleRun: false
             }
@@ -74,6 +78,7 @@ module.exports = function (grunt) {
         grunt.task.run('bumpup:' + type);
     });
 
+    grunt.registerTask('test-phantom', ['karma:phantom']);
     grunt.registerTask('test', ['karma:unit']);
     grunt.registerTask('test-start', ['karma:debug:start']);
     grunt.registerTask('test-run', ['karma:debug:run']);

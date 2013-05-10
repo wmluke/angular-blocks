@@ -20,7 +20,7 @@
         "npm": "1.1.x"
     },
     "scripts": {
-        "test": "grunt test",
+        "test": "grunt test-phantom",
         "start": "node app"
     },
     "devDependencies": {
