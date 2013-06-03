@@ -1,7 +1,7 @@
 {
     "name": "angular-blocks",
     "description": "Template inheritance for Angular JS",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "private": false,
     "homepage": "https://github.com/wmluke/angular-blocks",
     "author": {
@@ -37,6 +37,7 @@
         "grunt-regarde": "~0.1.1",
         "grunt-karma": "~0.4.4",
         "grunt-exec": "~0.4.0",
-        "jshint": "~1.1.0"
+        "jshint": "~1.1.0",
+        "grunt-build-lifecycle": "~0.1.1"
     }
 }

@@ -1,12 +1,25 @@
 module.exports = function (grunt) {
     'use strict';
 
-    // load all grunt tasks
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        lifecycle: {
+            validate: [
+                'jshint'
+            ],
+            compile: [],
+            test: [
+                'karma:phantom'
+            ],
+            'package': [
+                'uglify'
+            ],
+            'integration-test': [],
+            verify: [],
+            install: [],
+            deploy: []
+        },
         jshint: {
             src: {
                 options: {
@@ -45,10 +58,10 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 banner: ['/**! ',
-                         ' * @license <%= pkg.name %> v<%= pkg.version %>',
-                         ' * Copyright (c) 2013 <%= pkg.author.name %>. <%= pkg.homepage %>',
-                         ' * License: MIT',
-                         ' */\n'].join('\n')
+                    ' * @license <%= pkg.name %> v<%= pkg.version %>',
+                    ' * Copyright (c) 2013 <%= pkg.author.name %>. <%= pkg.homepage %>',
+                    ' * License: MIT',
+                    ' */\n'].join('\n')
             },
             main: {
                 files: {
@@ -73,16 +86,18 @@ module.exports = function (grunt) {
         }
     });
 
+    // load all grunt tasks
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
     grunt.registerTask('bump', function (type) {
         type = type ? type : 'patch';
         grunt.task.run('bumpup:' + type);
     });
 
     grunt.registerTask('test-phantom', ['karma:phantom']);
-    grunt.registerTask('test', ['karma:unit']);
     grunt.registerTask('test-start', ['karma:debug:start']);
     grunt.registerTask('test-run', ['karma:debug:run']);
-    grunt.registerTask('build', ['jshint', 'test', 'uglify']);
-    grunt.registerTask('default', ['build']);
+    grunt.registerTask('build', ['install']);
+    grunt.registerTask('default', ['install']);
 
 };
