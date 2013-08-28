@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    function extendTemplate($templateCache, $compile, $http) {
+    function extendTemplate($templateCache, $compile, $http, $q, $log) {
         return {
             compile: function (tElement, tAttrs) {
                 var src = tAttrs.extendTemplate;
@@ -53,7 +53,9 @@
 
                         return $template;
                     }, function () {
-                        throw 'Failed to load template: ' + src;
+                        var msg = 'Failed to load template: ' + src;
+                        $log.error(msg);
+                        return $q.reject(msg);
                     });
 
 
@@ -68,5 +70,5 @@
     }
 
     angular.module('angular-blocks', [])
-        .directive('extendTemplate', ['$templateCache', '$compile', '$http', extendTemplate]);
+        .directive('extendTemplate', ['$templateCache', '$compile', '$http', '$q', '$log', extendTemplate]);
 }());

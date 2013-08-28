@@ -10,6 +10,7 @@ describe('angular-blocks directives', function () {
             '<footer data-block="footer"><p>:footer</p></footer>'
         ];
         module('angular-blocks');
+
         inject(function ($injector) {
             $httpBackend = $injector.get('$httpBackend');
             $httpBackend.when('GET', '/layout.html').respond(layout.join('/n'));
@@ -24,17 +25,20 @@ describe('angular-blocks directives', function () {
 
 
     describe('data-extend-template directive', function () {
-        it('should throw an exception if the template fails to load', inject(function ($rootScope, $compile) {
+        it('should throw an exception if the template fails to load', inject(function ($rootScope, $compile, $log) {
             var html = [
                 '<div data-extend-template="/foo.html">',
                 '</div>'
             ];
 
             var element = angular.element(html.join('\n'));
-            expect(function () {
-                $compile(element)($rootScope);
-                $httpBackend.flush();
-            }).toThrow('Failed to load template: /foo.html');
+            $compile(element)($rootScope);
+
+            expect($log.assertEmpty());
+
+            $httpBackend.flush();
+
+            expect($log.error.logs[0][0]).toEqual('Failed to load template: /foo.html');
         }));
     });
 

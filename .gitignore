@@ -2,3 +2,4 @@
 coverage
 node_modules
 test-results.xml
+bower_components

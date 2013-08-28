@@ -75,7 +75,7 @@ module.exports = function (grunt) {
                 tasks: ['uglify']
             }
         },
-        bumpup: ['package.json', 'component.json'],
+        bumpup: ['package.json', 'bower.json'],
         exec: {
             release_start: {
                 command: 'git flow release start <%= pkg.version %>'
