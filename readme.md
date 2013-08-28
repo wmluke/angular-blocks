@@ -181,21 +181,31 @@ Becomes:
 </div>
 ```
 
-## Installation
+## API
 
-Download [angular-blocks.min.js](https://github.com/wmluke/angular-blocks/blob/master/dist/angular-blocks.min.js) or install with bower.
+See the [spec](https://github.com/wmluke/angular-blocks/blob/master/test/angular-blocks-spec.js).
+
+## Contributing
+
+### Prerequisites
+
+The project requires [Bower](http://bower.io), [Grunt](http://gruntjs.com), and [PhantomJS](http://phantomjs.org).  Once you have installed them, you can build, test, and run the project.
+
+### Build & Test
+
+To build and run tests, run either...
 
 ```bash
-$ bower install angular-blocks --save
+$ make install
 ```
 
-Load `angular-blocks.min.js` then add the `angular-blocks` module to your Angular app.
+or
 
-
-```javascript
-angular.module('app', ['angular-blocks']);
+```bash
+$ npm install
+$ bower install
+$ grunt build
 ```
-
 
 ## Licsense
 
