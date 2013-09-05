@@ -13,8 +13,6 @@ describe('angular-blocks directives', function () {
         var subLayout = [
             '<div data-extend-template="/main-layout.html">',
             '<div data-block="header"><p>{{ subHeader }}</p></div>',
-            '<div data-block="content"><p>:content</p></div>',
-            '<footer data-block="footer"><p>:footer</p></footer>',
             '</div>'
         ];
         module('angular-blocks');
@@ -96,6 +94,45 @@ describe('angular-blocks directives', function () {
             expect(element.find('[data-block="content"]').html().trim()).toBe('<p class="ng-binding">Bar</p>');
             expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
         }));
+
+        it('should support multiple inheritance', inject(function ($compile) {
+            var html = [
+                '<div data-extend-template="/sub-layout.html">',
+                '   <div data-block="content">',
+                '       <p>{{ foo }}</p>',
+                '   </div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:sub-header</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p class="ng-binding">Bar</p>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
+
+        it('should log a warning if the block is missing', inject(function ($compile, $log) {
+            var html = [
+                '<div data-extend-template="/main-layout.html">',
+                '   <div data-block="foo">',
+                '       <p>{{ foo }}</p>',
+                '   </div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect($log.warn.logs[0][0]).toEqual('Failed to find data-block=foo in /main-layout.html');
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:header</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
     });
 
     describe('data-block-prepend directive', function () {
@@ -115,6 +152,41 @@ describe('angular-blocks directives', function () {
             expect(element.find('[data-block="content"]').html().trim()).toBe('<div data-block-prepend="content"><p class="ng-binding">Bar</p></div><p>:content</p>');
             expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
         }));
+
+        it('should support multiple inheritance', inject(function ($compile) {
+            var html = [
+                '<div data-extend-template="/sub-layout.html">',
+                '   <div data-block-prepend="content"><p>{{ foo }}</p></div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:sub-header</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<div data-block-prepend="content"><p class="ng-binding">Bar</p></div><p>:content</p>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
+
+        it('should log a warning if the block is missing', inject(function ($compile, $log) {
+            var html = [
+                '<div data-extend-template="/main-layout.html">',
+                '   <div data-block-prepend="foo"><p>{{ foo }}</p></div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect($log.warn.logs[0][0]).toEqual('Failed to find data-block=foo in /main-layout.html');
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:header</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
     });
 
     describe('data-block-append directive', function () {
@@ -132,6 +204,41 @@ describe('angular-blocks directives', function () {
 
             expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:header</p>');
             expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p><div data-block-append="content"><p class="ng-binding">Bar</p></div>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
+
+        it('should support multiple inheritance', inject(function ($compile) {
+            var html = [
+                '<div data-extend-template="/sub-layout.html">',
+                '   <div data-block-append="content"><p>{{ foo }}</p></div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:sub-header</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p><div data-block-append="content"><p class="ng-binding">Bar</p></div>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
+
+        it('should log a warning if the block is missing', inject(function ($compile, $log) {
+            var html = [
+                '<div data-extend-template="/main-layout.html">',
+                '   <div data-block-append="foo"><p>{{ foo }}</p></div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect($log.warn.logs[0][0]).toEqual('Failed to find data-block=foo in /main-layout.html');
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:header</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
             expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
         }));
     });
@@ -155,6 +262,42 @@ describe('angular-blocks directives', function () {
             expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
             expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
         }));
+
+        it('should support multiple inheritance', inject(function ($compile) {
+            var html = [
+                '<div data-extend-template="/sub-layout.html">',
+                '   <div data-block-before="content"><p>{{ foo }}</p></div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:sub-header</p>');
+            expect(element.find('[data-block="content"]').prev().html().trim()).toBe('<p class="ng-binding">Bar</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
+
+        it('should log a warning if the block is missing', inject(function ($compile, $log) {
+            var html = [
+                '<div data-extend-template="/main-layout.html">',
+                '   <div data-block-before="foo"><p>{{ foo }}</p></div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect($log.warn.logs[0][0]).toEqual('Failed to find data-block=foo in /main-layout.html');
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:header</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
     });
 
     describe('data-block-after directive', function () {
@@ -173,6 +316,42 @@ describe('angular-blocks directives', function () {
             expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:header</p>');
             expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
             expect(element.find('[data-block="content"]').next().html().trim()).toBe('<p class="ng-binding">Bar</p>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
+
+        it('should prepend the content block', inject(function ($compile) {
+            var html = [
+                '<div data-extend-template="/sub-layout.html">',
+                '   <div data-block-after="content"><p>{{ foo }}</p></div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:sub-header</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
+            expect(element.find('[data-block="content"]').next().html().trim()).toBe('<p class="ng-binding">Bar</p>');
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
+
+        it('should log a warning if the block is missing', inject(function ($compile, $log) {
+            var html = [
+                '<div data-extend-template="/main-layout.html">',
+                '   <div data-block-after="foo"><p>{{ foo }}</p></div>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect($log.warn.logs[0][0]).toEqual('Failed to find data-block=foo in /main-layout.html');
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:header</p>');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
             expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
         }));
     });

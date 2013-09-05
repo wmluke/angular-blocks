@@ -3,6 +3,11 @@
     'use strict';
 
     function extendTemplate($templateCache, $compile, $http, $q, $log) {
+
+        function warnMissingBlock(name, src) {
+            $log.warn('Failed to find data-block=' + name + ' in ' + src);
+        }
+
         return {
             compile: function (tElement, tAttrs) {
                 var src = tAttrs.extendTemplate;
@@ -18,39 +23,37 @@
                         var template = response.data;
                         var $template = $(document.createElement('div')).html(template);
 
+                        function override(method, $block, attr) {
+                            var name = $block.attr(attr);
+                            if ($template.find('[data-block="' + name + '"]')[method]($block).length === 0 &&
+                                $template.find('[data-extend-template]').append($block).length === 0) {
+                                warnMissingBlock(name, src);
+                            }
+                        }
+
                         // Replace overridden blocks
                         $clone.children('[data-block]').each(function () {
-                            var $block = $(this);
-                            var name = $block.attr('data-block');
-                            $template.find('[data-block="' + name + '"]').replaceWith($block);
+                            override('replaceWith', $(this), 'data-block');
                         });
 
                         // Insert prepend blocks
                         $clone.children('[data-block-prepend]').each(function () {
-                            var $block = $(this);
-                            var name = $block.attr('data-block-prepend');
-                            $template.find('[data-block="' + name + '"]').prepend($block);
+                            override('prepend', $(this), 'data-block-prepend');
                         });
 
                         // Insert append blocks
                         $clone.children('[data-block-append]').each(function () {
-                            var $block = $(this);
-                            var name = $block.attr('data-block-append');
-                            $template.find('[data-block="' + name + '"]').append($block);
+                            override('append', $(this), 'data-block-append');
                         });
 
                         // Insert before blocks
                         $clone.children('[data-block-before]').each(function () {
-                            var $block = $(this);
-                            var name = $block.attr('data-block-before');
-                            $template.find('[data-block="' + name + '"]').before($block);
+                            override('before', $(this), 'data-block-before');
                         });
 
                         // Insert after blocks
                         $clone.children('[data-block-after]').each(function () {
-                            var $block = $(this);
-                            var name = $block.attr('data-block-after');
-                            $template.find('[data-block="' + name + '"]').after($block);
+                            override('after', $(this), 'data-block-after');
                         });
 
                         return $template;

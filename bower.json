@@ -1,7 +1,7 @@
 {
     "name": "angular-blocks",
     "description": "Template inheritance for Angular JS",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "main": [
         "dist/angular-blocks.min.js",
         "src/angular-blocks.js"
