@@ -1,6 +1,7 @@
 # angular-blocks
 
 [![Build Status](https://travis-ci.org/wmluke/angular-blocks.png?branch=master)](https://travis-ci.org/wmluke/angular-blocks)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wmluke/angular-blocks/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Block style template inheritance for [AngularJS](http://angularjs.org) inspired by [Jade](http://jade-lang.com), [Handlebars](http://thejohnfreeman.com/blog/2012/03/23/template-inheritance-for-handlebars.html), and [Django](https://docs.djangoproject.com/en/dev/topics/templates/#template-inheritance).
 
