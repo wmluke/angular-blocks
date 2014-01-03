@@ -25,19 +25,33 @@
     },
     "devDependencies": {
         "grunt": "~0.4.1",
-        "karma": "~0.8.5",
         "chai": "~1.5.0",
         "istanbul": "~0.1.34",
         "sinon-chai": "~2.3.1",
         "sinon": "~1.6.0",
         "matchdep": "~0.1.2",
+        "jshint": "~1.1.0",
         "grunt-contrib-jshint": "~0.1.1",
+        "grunt-contrib-concat": "~0.3.0",
         "grunt-contrib-uglify": "~0.2.0",
         "grunt-bumpup": "~0.2.0",
         "grunt-regarde": "~0.1.1",
-        "grunt-karma": "~0.4.4",
         "grunt-exec": "~0.4.0",
-        "jshint": "~1.1.0",
-        "grunt-build-lifecycle": "~0.1.1"
+        "grunt-build-lifecycle": "~0.1.1",
+
+        "grunt-karma": "~0.6.2",
+        "karma": "~0.10.9",
+        "karma-ng-scenario": "~0.1.0",
+        "karma-script-launcher": "~0.1.0",
+        "karma-firefox-launcher": "~0.1.3",
+        "karma-chrome-launcher": "~0.1.2",
+        "karma-html2js-preprocessor": "~0.1.0",
+        "karma-jasmine": "~0.1.5",
+        "karma-requirejs": "~0.2.1",
+        "karma-coffee-preprocessor": "~0.1.2",
+        "karma-phantomjs-launcher": "~0.1.1",
+        "karma-ng-html2js-preprocessor": "~0.1.0",
+        "karma-junit-reporter": "~0.2.1",
+        "karma-coverage": "~0.1.4"
     }
 }

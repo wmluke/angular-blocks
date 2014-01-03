@@ -3,8 +3,7 @@
     "description": "Template inheritance for Angular JS",
     "version": "0.1.8",
     "main": [
-        "dist/angular-blocks.min.js",
-        "src/angular-blocks.js"
+        "dist/angular-blocks.js"
     ],
     "ignore": [
         "components",
@@ -15,11 +14,11 @@
     ],
     "dependencies": {
         "jquery": ">1.9",
-        "angular": "1.0 - 1.2.0"
+        "angular": ">1.0"
     },
     "devDependencies": {
-        "angular-mocks": "~1.2.0",
-        "angular-scenario": "~1.2.0",
-        "jasmine-jquery": "~1.5.0"
+        "angular": "=1.2.6",
+        "angular-mocks": "=1.2.6",
+        "angular-scenario": "=1.2.6"
     }
 }

@@ -13,6 +13,7 @@ module.exports = function (grunt) {
                 'karma:phantom'
             ],
             'package': [
+                'concat',
                 'uglify'
             ],
             'integration-test': [],
@@ -55,24 +56,41 @@ module.exports = function (grunt) {
                 singleRun: false
             }
         },
-        uglify: {
+
+        concat: {
             options: {
                 banner: ['/**! ',
-                    ' * @license <%= pkg.name %> v<%= pkg.version %>',
+                    ' * <%= pkg.name %> v<%= pkg.version %>',
                     ' * Copyright (c) 2013 <%= pkg.author.name %>. <%= pkg.homepage %>',
                     ' * License: MIT',
                     ' */\n'].join('\n')
             },
-            main: {
+            scripts: {
+                src: [
+                    'src/*.js'
+                ],
+                dest: 'dist/<%= pkg.name %>.js'
+            }
+        },
+
+        uglify: {
+            options: {
+                banner: ['/**! ',
+                    ' * <%= pkg.name %> v<%= pkg.version %>',
+                    ' * Copyright (c) 2013 <%= pkg.author.name %>. <%= pkg.homepage %>',
+                    ' * License: MIT',
+                    ' */\n'].join('\n')
+            },
+            dist: {
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['src/<%= pkg.name %>.js']
+                    'dist/<%= pkg.name %>.min.js': ['<%= concat.scripts.dest %>']
                 }
             }
         },
         regarde: {
             scripts: {
                 files: ['src/**/*.js'],
-                tasks: ['uglify']
+                tasks: ['concat', 'uglify']
             }
         },
         bumpup: ['package.json', 'bower.json'],
