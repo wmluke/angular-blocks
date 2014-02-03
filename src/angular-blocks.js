@@ -15,7 +15,7 @@
                     throw 'Template not specified in extend-template directive';
                 }
                 // Clone and then clear the template element to prevent expressions from being evaluated
-                var $clone = tElement.clone();
+                var $clone = $(tElement.clone());
                 tElement.html('');
 
                 var loadTemplate = $http.get(src, {cache: $templateCache})
