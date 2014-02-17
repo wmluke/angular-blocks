@@ -36,9 +36,8 @@ module.exports = function (config) {
         },
 
         coverageReporter: {
-            type: 'cobertura', // xml format supported by Jenkins
-            dir: 'reports/coverage',
-            file: 'unit-test-coverage.xml'
+            type: 'lcov', // lcov format supported by Coveralls
+            dir: 'reports/coverage'
         },
 
         junitReporter: {

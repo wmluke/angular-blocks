@@ -21,7 +21,8 @@
     },
     "scripts": {
         "test": "grunt test-phantom",
-        "start": "node app"
+        "start": "node app",
+        "coveralls": "cat ./reports/coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
@@ -52,6 +53,7 @@
         "karma-phantomjs-launcher": "~0.1.1",
         "karma-ng-html2js-preprocessor": "~0.1.0",
         "karma-junit-reporter": "~0.2.1",
-        "karma-coverage": "~0.1.4"
+        "karma-coverage": "~0.1.4",
+        "coveralls": "~2.8.0"
     }
 }
