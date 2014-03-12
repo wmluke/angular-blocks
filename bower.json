@@ -13,12 +13,12 @@
         "Gruntfile.js"
     ],
     "dependencies": {
-        "jquery": ">1.9",
         "angular": ">1.0"
     },
     "devDependencies": {
         "angular": "=1.2.6",
         "angular-mocks": "=1.2.6",
-        "angular-scenario": "=1.2.6"
+        "angular-scenario": "=1.2.6",
+        "jquery": ">1.9"
     }
 }
