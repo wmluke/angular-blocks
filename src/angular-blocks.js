@@ -25,9 +25,14 @@
                         function override(method, block, attr, replace) {
                             var name = block[0].getAttribute(attr);
 
-                            block = replace ? block.html() : block;
+                            // If we are replacing the data-block then we need
+                            // to create a seperate reference to the block
+                            // as we will need to still append the original
+                            // block to the template to allow for multi-level
+                            // template inheritence.
+                            var methodBlock = replace ? angular.element(block.html()) : block;
 
-                            if (angular.element(template[0].querySelectorAll('[data-block="' + name + '"]'))[method](block).length === 0 &&
+                            if (angular.element(template[0].querySelectorAll('[data-block="' + name + '"]'))[method](methodBlock).length === 0 &&
                                 angular.element(template[0].querySelectorAll('[data-extend-template]')).append(block).length === 0) {
                                 warnMissingBlock(name, src);
                             }
