@@ -182,6 +182,33 @@ Becomes:
 </div>
 ```
 
+### Only Block Contents: `data-only-contents`
+
+```html
+<div data-extend-template="/layout.html">
+   <div data-block-append="content" data-only-contents>
+       <p>Foo</p>
+   </div>
+</div>
+```
+
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content">
+       <p>:content</p>
+       <p>Foo</p>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
+</div>
+```
+
 ## API
 
 See the [spec](https://github.com/wmluke/angular-blocks/blob/master/test/angular-blocks-spec.js).
