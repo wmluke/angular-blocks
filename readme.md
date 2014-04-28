@@ -7,7 +7,7 @@ Block style template inheritance for [AngularJS](http://angularjs.org) inspired 
 
 ## Installation
 
-Requires jquery.
+Requires jQuery.
 
 Download [angular-blocks.min.js](https://github.com/wmluke/angular-blocks/blob/master/dist/angular-blocks.min.js) or install with bower.
 
@@ -208,7 +208,7 @@ $ bower install
 $ grunt build
 ```
 
-## Licsense
+## License
 
 Copyright (c) 2013 William L. Bunselmeyer. https://github.com/wmluke/angular-blocks
 
