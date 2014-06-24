@@ -29,9 +29,17 @@
                         var $template = $(document.createElement('div')).html(template);
 
                         function override(method, $block, attr) {
-                            var name = $block.attr(attr);
-                            if ($template.find('[data-block="' + name + '"]')[method]($block).length === 0 &&
-                                $template.find('[data-extend-template]').append($block).length === 0) {
+                            var name = $block.attr(attr),
+                                elements = $block.attr('data-only-contents') !== undefined ? $block.contents() : $block;
+
+                            var namedBlock = $template.find('[data-block="' + name + '"]');
+                            var inheritingBlock = $template.find('[data-extend-template]');
+                            
+                            if (namedBlock.length !== 0) {
+                                namedBlock[method](elements);
+                            } else if (inheritingBlock.length !== 0) {
+                                inheritingBlock.append($block);
+                            } else {
                                 warnMissingBlock(name, src);
                             }
                         }
