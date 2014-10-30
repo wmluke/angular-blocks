@@ -23,7 +23,7 @@
                 var $clone = tElement.clone();
                 tElement.html('');
 
-                var loadTemplate = $http.get(src, {cache: $templateCache})
+                var loadTemplate = $http.get(src, { cache: $templateCache })
                     .then(function (response) {
                         var template = response.data;
                         var $template = $(document.createElement('div')).html(template);
@@ -36,9 +36,41 @@
                             }
                         }
 
-                        // Replace overridden blocks
+                        function replaceAttrs(sourceElem, destElem, attrs) {
+                            if (angular.isArray(attrs)) {
+                                //replace only specified attributes
+                                for (var i = 0; i < attrs.length; i += 1) {
+                                    destElem.attr(attrs[i], sourceElem.attr(attrs[i]));
+                                }
+                            } else {
+                                //replace all
+                                var allAttributes = sourceElem[0].attributes;
+                                for (var j = 0; j < allAttributes.length; j += 1) {
+                                    destElem.attr(allAttributes[j].name, allAttributes[j].value);
+                                }
+                            }
+                        }
+
+                        function overrideAttrs($block, attrsToReplace) {
+                            var name = $block.attr('data-block');
+                            var templateBlocks = $template.find('[data-block="' + name + '"]');
+                            if (!templateBlocks) {
+                                warnMissingBlock(name, src);
+                            } else {
+                                templateBlocks.each(function (index, templateBlock) {
+                                    replaceAttrs($block, $(templateBlock), attrsToReplace !== '' ? attrsToReplace.split(',') : null);
+                                });
+                            }
+                        }
+
+                        // Replace overridden blocks or attributes
                         $clone.children('[data-block]').each(function () {
-                            override('replaceWith', $(this), 'data-block');
+                            var attrsToReplace = $(this).attr('replace-attrs');
+                            if (attrsToReplace !== undefined) {
+                                overrideAttrs($(this), attrsToReplace);
+                            } else {
+                                override('replaceWith', $(this), 'data-block');
+                            }
                         });
 
                         // Insert prepend blocks

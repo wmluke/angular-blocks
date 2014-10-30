@@ -34,13 +34,13 @@
                         function replaceAttrs(sourceElem, destElem, attrs) {
                             if (angular.isArray(attrs)) {
                                 //replace only specified attributes
-                                for (var i = 0; i < attrs.length; i++) {
+                                for (var i = 0; i < attrs.length; i += 1) {
                                     destElem.attr(attrs[i], sourceElem.attr(attrs[i]));
                                 }
                             } else {
                                 //replace all
                                 var allAttributes = sourceElem[0].attributes;
-                                for (var j = 0; j < allAttributes.length; j++) {
+                                for (var j = 0; j < allAttributes.length; j += 1) {
                                     destElem.attr(allAttributes[j].name, allAttributes[j].value);
                                 }
                             }
