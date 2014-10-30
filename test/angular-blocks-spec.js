@@ -6,7 +6,7 @@ describe('angular-blocks directives', function () {
     beforeEach(function () {
         var mainLayout = [
             '<header data-block="header"><p>{{ mainHeader }}</p></header>',
-            '<div data-block="content"><p>:content</p></div>',
+            '<div data-block="content" style="color:black;"><p>:content</p></div>',
             '<footer data-block="footer"><p>:footer</p></footer>'
         ];
 
@@ -94,6 +94,47 @@ describe('angular-blocks directives', function () {
             expect(element.find('[data-block="content"]').html().trim()).toBe('<p class="ng-binding">Bar</p>');
             expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
         }));
+
+        it('should extend specified attributes of content block', inject(function ($compile) {
+            var html = [
+                '<div data-extend-template="/main-layout.html">',
+                '   <div data-block="content" style="color:red;" ng-show="false" replace-attrs="style,ng-show"/>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:header</p>');
+            expect(element.find('[data-block="content"]')[0].getAttribute('style')).toBe('color:red;');
+            expect(element.find('[data-block="content"]')[0].getAttribute('ng-show')).toBe('false');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
+
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
+
+        it('should extend all attributes of content block', inject(function ($compile) {
+            var html = [
+                '<div data-extend-template="/main-layout.html">',
+                '   <div data-block="content" style="color:red;" ng-show="false" replace-attrs/>',
+                '</div>'
+            ];
+
+            var element = angular.element(html.join('\n'));
+            element = $compile(element)($scope);
+            $scope.$digest();
+            $httpBackend.flush();
+
+            expect(element.find('[data-block="header"]').html().trim()).toBe('<p class="ng-binding">:header</p>');
+            expect(element.find('[data-block="content"]')[0].getAttribute('style')).toBe('color:red;');
+            expect(element.find('[data-block="content"]')[0].getAttribute('ng-show')).toBe('false');
+            expect(element.find('[data-block="content"]').html().trim()).toBe('<p>:content</p>');
+
+            expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
+        }));
+
 
         it('should support multiple inheritance', inject(function ($compile) {
             var html = [
@@ -242,7 +283,6 @@ describe('angular-blocks directives', function () {
             expect(element.find('[data-block="footer"]').html().trim()).toBe('<p>:footer</p>');
         }));
     });
-
 
     describe('data-block-before directive', function () {
         it('should prepend the content block', inject(function ($compile) {
