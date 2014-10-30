@@ -31,7 +31,7 @@ Given the template below:
     <header data-block="header">
         <p>:header</p>
     </header>
-    <div data-block="content">
+    <div data-block="content" style="color:black;">
         <p>:content</p>
     </div>
     <footer data-block="footer">
@@ -39,6 +39,34 @@ Given the template below:
     </footer>
 </script>
 ```
+
+### Attributes Replace: `data-block` + `replace-attrs`
+
+```html
+<div data-extend-template="/layout.html">
+   <div data-block="content" ng-show="true" style="color:red;" replace-attrs="style,ng-show"/>
+</div>
+```
+When `replace-attrs` is empty all attributes of extended `data-block` replace attributes of parent. 
+
+
+Becomes:
+
+```html
+<div data-extend-template="/layout.html">
+    <header data-block="header">
+        <p>:header</p>
+    </header>
+    <div data-block="content" style="color:red;" ng-show="true">
+        <p>:content</p>
+    </div>
+    <footer data-block="footer">
+        <p>:footer</p>
+    </footer>
+</div>
+```
+Please note that `replace-attrs` doesn't replace сontents, only attributes.
+
 
 ### Block Replace: `data-block`
 
