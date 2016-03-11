@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    function extendTemplate($templateCache, $compile, $http, $q, $log) {
+    function extendTemplate($templateCache, $compile, $http, $q, $log, $timeout) {
 
         function warnMissingBlock(name, src) {
             $log.warn('Failed to find data-block=' + name + ' in ' + src);
@@ -19,6 +19,7 @@
                 if (!src) {
                     throw 'Template not specified in extend-template directive';
                 }
+
                 // Clone and then clear the template element to prevent expressions from being evaluated
                 var $clone = tElement.clone();
                 tElement.html('');
@@ -71,8 +72,12 @@
 
                 return function ($scope, $element) {
                     loadTemplate.then(function ($template) {
+                        $scope.$broadcast('$blocksExtendTemplateLinkStart', src);
                         $element.html($template.html());
                         $compile($element.contents())($scope);
+                        $timeout(function () {
+                            $scope.$broadcast('$blocksExtendTemplateLinkFinish', src);
+                        });
                     });
                 };
             }
@@ -80,5 +85,5 @@
     }
 
     angular.module('angular-blocks', [])
-        .directive('extendTemplate', ['$templateCache', '$compile', '$http', '$q', '$log', extendTemplate]);
+        .directive('extendTemplate', ['$templateCache', '$compile', '$http', '$q', '$log', '$timeout', extendTemplate]);
 }());

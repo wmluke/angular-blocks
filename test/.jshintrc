@@ -2,7 +2,6 @@
     "node": false,
     "browser": true,
     "jquery": true,
-    "es5": true,
     "bitwise": true,
     "camelcase": false,
     "latedef": true,

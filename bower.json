@@ -14,11 +14,12 @@
     ],
     "dependencies": {
         "jquery": ">1.9",
-        "angular": ">1.0"
+        "angular": "1.x"
     },
     "devDependencies": {
-        "angular": "=1.2.6",
-        "angular-mocks": "=1.2.6",
-        "angular-scenario": "=1.2.6"
+        "jquery": "=1.11.1",
+        "angular": "=1.4.9",
+        "angular-mocks": "=1.4.9",
+        "angular-scenario": "=1.4.9"
     }
 }
