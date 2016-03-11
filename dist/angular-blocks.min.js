@@ -1,5 +1,5 @@
 /**! 
- * angular-blocks v0.1.9
+ * angular-blocks v0.1.10
  * Copyright (c) 2013 William L. Bunselmeyer. https://github.com/wmluke/angular-blocks
  * License: MIT
  */
